@@ -30,7 +30,13 @@ namespace Senai.Gerir.Api
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers()
+                    .AddNewtonsoftJson(options =>
+                    {
+                        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                    });
+
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Senai.Gerir.Api", Version = "v1" });
@@ -48,7 +54,7 @@ namespace Senai.Gerir.Api
                         ValidateIssuerSigningKey = true,
                         ValidIssuer = "gerir.com.br",
                         ValidAudience = "gerir.com.br",
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("GerirSignature"))
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("GerirChaveSeguranca"))
                     };
                 });
         }
@@ -66,6 +72,8 @@ namespace Senai.Gerir.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
