@@ -10,6 +10,8 @@ namespace Senai.Gerir.Api.Dominios
         public Usuario()
         {
             Tarefas = new HashSet<Tarefa>();
+            //quando cadastrar o usuário, gerar um id automático com Guid
+            Id = Guid.NewGuid();
         }
 
         public Guid Id { get; set; }

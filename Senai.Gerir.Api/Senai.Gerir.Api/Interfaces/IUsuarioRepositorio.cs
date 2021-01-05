@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Senai.Gerir.Api.Interfaces
 {
-    public interface IUsuarioRepositorioe
+    public interface IUsuarioRepositorio
     {
 
         /// <summary>
