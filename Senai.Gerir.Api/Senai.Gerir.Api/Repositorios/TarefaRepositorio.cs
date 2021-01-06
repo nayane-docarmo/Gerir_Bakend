@@ -85,6 +85,8 @@ namespace Senai.Gerir.Api.Repositorios
                 //Alterar os valores da tarefa
                 tarefaexiste.Titulo = tarefa.Titulo;
                 tarefaexiste.Descricao = tarefa.Descricao;
+                tarefaexiste.Categoria = tarefa.Categoria;
+                tarefaexiste.DataEntrega = tarefa.DataEntrega;
 
                 _context.Tarefas.Update(tarefaexiste);
                 _context.SaveChanges();
@@ -140,10 +142,10 @@ namespace Senai.Gerir.Api.Repositorios
             try
             {
                 //Selecionar os itens do banco de dado
-                var listaTarefa = _context.Tarefas.Where(c => c.UsuarioId == IdUsuario);
+                var listaTarefa = _context.Tarefas.Where(c => c.UsuarioId == IdUsuario).ToList();
 
                 //Converção para lista 
-                return (List<Tarefa>)listaTarefa;
+                return listaTarefa;
             }
             catch (Exception ex)
             {
