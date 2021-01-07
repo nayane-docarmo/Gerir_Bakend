@@ -44,9 +44,7 @@ namespace Senai.Gerir.Api.Repositorios
             try
             {
                 //Buscar a Tarefa pelo seu Id usando o find
-                var tarefa = _context.Tarefas.Find(id);
-
-                return tarefa;
+                return _context.Tarefas.Find(id);
 
             }
             catch (Exception ex)

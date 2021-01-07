@@ -33,7 +33,10 @@ namespace Senai.Gerir.Api
             services.AddControllers()
                     .AddNewtonsoftJson(options =>
                     {
+                        //Elimina os loop
                         options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                       //Elimina valoes null 
+                        options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
                     });
 
 

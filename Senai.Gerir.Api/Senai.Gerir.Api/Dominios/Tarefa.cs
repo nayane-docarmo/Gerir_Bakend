@@ -11,6 +11,7 @@ namespace Senai.Gerir.Api.Dominios
         {
             //quando cadastrar o usuário, gerar um id automático com Guid
             Id = Guid.NewGuid();
+            Status = false;
         }
 
         public Guid Id { get; set; }
