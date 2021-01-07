@@ -60,6 +60,14 @@ namespace Senai.Gerir.Api
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("GerirChaveSeguranca"))
                     };
                 });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("PoliticaCors",
+                    builder => builder.AllowAnyOrigin()
+                                       .AllowAnyMethod()
+                                       .AllowAnyHeader());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,6 +79,7 @@ namespace Senai.Gerir.Api
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Senai.Gerir.Api v1"));
             }
+            app.UseCors("PoliticaCors");
 
             app.UseHttpsRedirection();
 
